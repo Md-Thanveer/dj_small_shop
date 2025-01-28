@@ -3,6 +3,10 @@ from .models import Category
 from .models import Brand
 
 #register your models here.
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+
+    list_display = ('id', 'name',)
+    search_fields = ('name',)
 
 admin.site.register(Brand)
