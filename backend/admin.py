@@ -8,5 +8,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
     list_display = ('id', 'name',)
     search_fields = ('name',)
+    ordering = ['id']
 
 admin.site.register(Brand)
