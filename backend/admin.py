@@ -10,4 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ['id']
 
-admin.site.register(Brand)
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+    search_fields = ('name',)
+    ordering = ['id']
