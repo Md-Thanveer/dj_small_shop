@@ -30,3 +30,11 @@ class Brand(models.Model):
         return self.name
     class Meta:
         db_table = 'brand'
+
+    class Product(models.Model):
+        id = models.BigAutoField(primary_key=True)
+        name = models.CharField(max_length=255)
+        description = models.TextField(null=True, blank=True)
+        category = models.ManyToManyField('Category', related_name='products', through='ProductCategory')
+        brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, blank=True)
+
