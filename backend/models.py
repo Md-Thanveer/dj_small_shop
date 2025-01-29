@@ -35,6 +35,6 @@ class Brand(models.Model):
         id = models.BigAutoField(primary_key=True)
         name = models.CharField(max_length=255)
         description = models.TextField(null=True, blank=True)
-        category = models.ManyToManyField('Category', related_name='products', through='ProductCategory')
+        category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True)
         brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, blank=True)
 
