@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +123,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Small Shop Admin",
+
+    # Custom links to append to app groups, keyed on app name
+    "custom_links": {
+        "backend": [{
+            "name": "Make Messages",
+            "url": "/admin/backend/category/add/",
+            "icon": "fas fa-comments",
+            "permissions": ["books.view_book"]
+        }]
+    },
+}
