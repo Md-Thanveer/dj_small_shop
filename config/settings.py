@@ -104,8 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
+from django.conf.global_settings import LANGUAGES as DJANGO_LANGUAGES
 
 LANGUAGE_CODE = 'en-us'
+# English default
+LANGUAGES = DJANGO_LANGUAGES
 
 TIME_ZONE = 'UTC'
 
@@ -128,6 +131,9 @@ JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Small Shop Admin",
 
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to the Shop-verse",
+
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
         "backend": [{
@@ -137,4 +143,6 @@ JAZZMIN_SETTINGS = {
             "permissions": ["books.view_book"]
         }]
     },
+
+    # "language_chooser": True
 }
