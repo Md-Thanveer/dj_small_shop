@@ -1,24 +1,65 @@
 from django.contrib import admin
-from django.utils.html import format_html
-from .models import Category
-from .models import Brand
+from .models import Category, Brand, Product, Cart, Order
 
-#register your models here.
-@admin.register(Category)
+
+# Register your models here.
+
+# categroy admin
+
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'name',)
-    search_fields = ('name',)
+    list_display = ('id','name')
+
+    search_fields = ('id','name',)
+
     ordering = ['id']
 
-@admin.register(Brand)
+admin.site.register(Category,CategoryAdmin)
+
+# brand admin
+
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'image_tag')
-    search_fields = ('name',)
-    ordering = ['-id']
 
-    def image_tag(self, obj):
-        return format_html('<img src = "{}" width = "150" height="150" />'.format(obj.image_path.url))
+    list_display = ('id','name','image_path','status',)
 
-    image_tag.short_description = 'Image'
+    search_fields = ('id','name','status')
 
+    ordering = ['id']
+
+admin.site.register(Brand,BrandAdmin)
+
+# product admin
+
+class ProductAdmin(admin.ModelAdmin):
+
+    list_display = ('id', 'name', 'image_path','description', 'category', 'brand','price', 'qty','alert_stock',)
+
+    search_fields = ('id', 'name',)
+
+    ordering = ['id']
+
+admin.site.register(Product,ProductAdmin)
+
+# cart admin
+
+class CartAdmin(admin.ModelAdmin):
+
+    list_display = ('id','product','qty',)
+
+    search_fields = ('id','product',)
+
+    ordering = ['id']
+
+admin.site.register(Cart,CartAdmin)
+
+# order admin
+
+class OrderAdmin(admin.ModelAdmin):
+
+    list_display = ('id', 'order_number', 'order_date', 'total_amount', 'order_status', 'payment_method',)
+
+    search_fields = ('id', 'order_number','order_status','payment_method')
+
+    ordering = ['id']
+
+admin.site.register(Order, OrderAdmin)
