@@ -2,7 +2,8 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from backend.models import Category,Brand,Product
-from .serializers import CategorySerializer,BrandSerializer,ProductSerializer,CartSerializer
+from .serializers import CategorySerializer, BrandSerializer, ProductSerializer, CartSerializer, OrderSerializer
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
@@ -65,6 +66,18 @@ class ProductViewSet(viewsets.ModelViewSet):
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CartSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        data = {
+            'data': serializer.data
+        }
+        return Response(data)
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = OrderSerializer
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
