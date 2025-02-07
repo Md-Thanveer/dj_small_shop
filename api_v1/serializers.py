@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from backend.models import Category, Brand, Product, Cart
+from backend.models import Category, Brand, Product, Cart, Order
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -22,4 +22,9 @@ class ProductSerializer(serializers.ModelSerializer):
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
+        fields = '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
         fields = '__all__'
